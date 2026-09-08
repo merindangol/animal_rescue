@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Login | PawConnect{% endblock %}
+{% block content %}<main class="page">
+    <div class="form-card">
+        <h1>Welcome back</h1>
+        <p class="intro">Log in to manage your PawConnect activity.</p>
+        <form method="post">{% csrf_token %}{{ form.as_p }}<button class="primary-btn" type="submit">Login</button>
+        </form>
+        <p class="muted">New to PawConnect? <a href="{% url 'register' %}">Create an account</a>.</p>
+    </div>
+</main>{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard | PawConnect{% endblock %}
+{% block content %}
+<main class="page">
+    <div class="container">
+        <h1>Welcome, {{ user.username }}</h1>
+        <p class="intro">Keep track of the ways you are helping animals through PawConnect.</p>
+        <div class="grid">
+            <section class="card">
+                <h2>My Rescue Reports</h2>
+                {% for report in rescue_reports %}
+                <p><strong>{{ report.animal_name }}</strong><br><span class="status">{{ report.status }}</span> · {{
+                    report.location }}</p>
+                {% empty %}
+                <p class="muted">No rescue reports yet.</p>
+                {% endfor %}
+                <a class="button" href="{% url 'rescue' %}">Report an animal</a>
+            </section>
+            <section class="card">
+                <h2>My Adoption Applications</h2>
+                {% for application in adoption_applications %}
+                <p><strong>{{ application.animal.name }}</strong><br><span class="status">{{ application.status
+                        }}</span></p>
+                {% empty %}
+                <p class="muted">No adoption applications yet.</p>
+                {% endfor %}
+                <a class="button" href="{% url 'adopt' %}">Find a friend</a>
+            </section>
+            <section class="card">
+                <h2>My Lost & Found Reports</h2>
+                {% for report in lost_found_reports %}
+                <p><strong>{{ report.report_type }}: {{ report.animal_name }}</strong><br><span class="status">{{
+                        report.status }}</span></p>
+                {% empty %}
+                <p class="muted">No lost and found reports yet.</p>
+                {% endfor %}
+                <a class="button" href="{% url 'lost-found' %}">View reports</a>
+            </section>
+            <section class="card">
+                <h2>My Volunteer Applications</h2>
+                {% for application in volunteer_applications %}
+                <p><strong>{{ application.availability }}</strong><br><span class="status">{{ application.status
+                        }}</span></p>
+                {% empty %}
+                <p class="muted">No volunteer applications yet.</p>
+                {% endfor %}
+                <a class="button" href="{% url 'volunteer' %}">Volunteer</a>
+            </section>
+        </div>
+    </div>
+</main>
+{% endblock %}

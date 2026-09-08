@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Adopt | PawConnect{% endblock %}
+{% block content %}<main class="page">
+    <div class="container">
+        <h1>Find a friend</h1>
+        <p class="intro">Meet animals looking for patient, loving homes.</p>
+        <div class="grid">
+            {% for animal in animals %}
+            <article class="card">
+                {% if animal.image %}
+                <img src="{{ animal.image.url }}" alt="{{ animal.name }}">
+                {% endif %}
+                <h2>{{ animal.name }}</h2>
+                <p>{{ animal.animal_type }} · {{ animal.age }} years
+                    {% if animal.gender %}· {{ animal.gender }}{% endif %}
+                </p>
+                <p>{{ animal.description }}</p>
+                <p class="muted">{{ animal.location }} · {{ animal.health_status }}</p>
+                <span class="status">{{ animal.adoption_status }}</span><br>
+                <a class="button" href="{% url 'apply-to-adopt' animal.id %}">Apply to Adopt</a>
+            </article>
+            {% empty %}
+            <p class="muted">No animals are listed yet. Please check back soon.</p>
+            {% endfor %}
+        </div>
+    </div>
+</main>{% endblock %}
