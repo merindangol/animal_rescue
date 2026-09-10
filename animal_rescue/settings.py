@@ -28,9 +28,13 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-i00o=yzc6hv@sms^+*+mh
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # Parse ALLOWED_HOSTS from environment variable
-# Supports: comma-separated domains, wildcard domains (e.g., .railway.app)
-_allowed_hosts = config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')
-ALLOWED_HOSTS = [host.strip() for host in _allowed_hosts]
+# Format: comma-separated domains (e.g., "localhost,127.0.0.1,.railway.app,web-production-627ed.up.railway.app")
+_allowed_hosts_str = config('ALLOWED_HOSTS', default='localhost,127.0.0.1')
+ALLOWED_HOSTS = [host.strip() for host in _allowed_hosts_str.split(',') if host.strip()]
+
+# For Railway: also accept any subdomain of up.railway.app
+if not DEBUG:
+    ALLOWED_HOSTS.extend(['.up.railway.app', '.railway.app'])
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
