@@ -1403,9 +1403,10 @@
                         <div class="rescue-image">
 
                             {% if report.image %}
-                                <img src="{{ report.image.url }}" alt="{{ report.animal_name }}">
+                            <img src="{{ report.image.url }}" alt="{{ report.animal_name }}">
                             {% else %}
-                                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80" alt="{{ report.animal_name }}">
+                            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80"
+                                alt="{{ report.animal_name }}">
                             {% endif %}
 
                             <span class="case-status">
