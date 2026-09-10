@@ -33,8 +33,6 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 /media
-/staticfiles
-/static
 
 # Virtual Environment
 venv/
@@ -49,13 +47,6 @@ myenv/
 *~
 .DS_Store
 
-# Environment variables
+# Environment files
 .env
 .env.local
-.env.*.local
-
-# Railway
-.railway/
-
-# OS
-Thumbs.db
